@@ -10,7 +10,6 @@ jobs:
           tag: 'registry.heroku.com/$HEROKU_APP_NAME/web'
       - docker/push:
           image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
-          tag: 'registry.heroku.com/$HEROKU_APP_NAME/web'
   deploy:
     executor: heroku/default
     steps:

@@ -5,7 +5,7 @@ version: 2.1
 workflows:
   heroku_deploy:
     jobs:
-      - setup_remote_docker:
+      - docker/publish:
+          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+          use-docker-credentials-store: true
       - heroku/push-docker-image:
-          post-steps:
-          pre-steps:

@@ -9,10 +9,6 @@ jobs:
           image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
       - docker/push:
           image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
-      - run:
-          name: Tagging for Heroku
-          command: |
-            docker tag $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME registry.heroku.com/$HEROKU_APP_NAME/web
 
   deploy:
     executor: heroku/default

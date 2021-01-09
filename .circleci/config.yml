@@ -24,7 +24,5 @@ version: 2.1
 workflows:
     jobs:
       - build-and-push
-      - deploy:
-         requires:
-           - build-and-push
+      - deploy
 

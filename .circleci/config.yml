@@ -10,7 +10,7 @@ jobs:
           tag: 'latest'
       - docker/push:
           image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME 
-          tag: 'latest'
+          tag: '$HEROKU_APP_NAME'
   deploy:
     executor: heroku/default
     steps:

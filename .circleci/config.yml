@@ -7,10 +7,8 @@ jobs:
       - docker/check
       - docker/build:
           image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
-          tag: '$HEROKU_APP_NAME'
       - docker/push:
-          image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME 
-          tag: '$HEROKU_APP_NAME'
+          image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
   deploy:
     executor: heroku/default
     steps:

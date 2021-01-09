@@ -2,11 +2,12 @@ version: 2.1
 orbs:
   docker: circleci/docker@1.5.0
   heroku: circleci/heroku@1.2.4
+
 jobs:
   build-and-test:
     executor: docker/default
     steps:
-      - docker/publish:
+      - build:
           image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME 
           tag: 'latest'
   deploy:

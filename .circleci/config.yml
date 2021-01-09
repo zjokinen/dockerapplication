@@ -4,6 +4,6 @@ version: 2.1
 workflows:
   heroku_deploy:
     jobs:
-      - heroku/release-docker-image:
+      - release-docker-image:
           app-name: $HEROKU_APP_NAME
           process-types: web

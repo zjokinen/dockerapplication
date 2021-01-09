@@ -10,3 +10,4 @@ workflows:
           image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
           tag: 'latest'
       - push-docker-image:
+         image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME

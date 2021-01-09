@@ -2,10 +2,16 @@ orbs:
   heroku: circleci/heroku@1.2.4
   docker: circleci/docker@1.0.0
 version: 2.1
+
+
+jobs: 
+  build-publish:
+  executor: docker/default
+  steps:
+    - docker/publish:
+       image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+       tag: 'latest'
 workflows:
   heroku_deploy:
     jobs:
-      - docker/publish:
-          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
-          use-docker-credentials-store: true
-      - heroku/push-docker-image:
+      - build-publish:

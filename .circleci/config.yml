@@ -5,5 +5,9 @@ workflows:
   deploy:
     jobs:
       - docker/publish:
+<<<<<<< HEAD
           image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
+=======
+          image: zjokinen/circletest
+>>>>>>> fc99ba14f688f27203e0bfdc49bf9315eeee0c45
           tag: 'latest'

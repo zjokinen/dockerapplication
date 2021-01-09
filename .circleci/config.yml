@@ -10,5 +10,7 @@ workflows:
           image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
           update-description: true
           tag: 'latest'
+      - setup_remove_docker:
+          version: 19.03.13
       - heroku/push-docker-image:
           app-name: $HEROKU_APP_NAME

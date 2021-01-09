@@ -15,11 +15,7 @@ jobs:
     steps:
       - heroku/install
       - setup_remote_docker
-      - heroku/push-docker-image:
-         process-types: web
-         recursive: true
-      - heroku/release-docker-image:
-         process-types: web
+      - heroku/deploy-via-git
 
 orbs:
   docker: circleci/docker@1.5.0

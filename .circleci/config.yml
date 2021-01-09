@@ -16,12 +16,8 @@ jobs:
     steps:
       - heroku/install
       - setup_remote_docker
-      - run:
-          name: Pushing to heroku registry
-          command: |
-            heroku container:login
-            heroku container:push web -a $HEROKU_APP_NAME
-            heroku container:release web -a $HEROKU_APP_NAME
+      - push-docker-image
+      - release-docker-image
 orbs:
   docker: circleci/docker@1.5.0
   heroku: circleci/heroku@1.2.4

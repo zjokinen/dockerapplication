@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   docker: circleci/docker@1.5.0
+  heroku: circleci/heroku@1.2.4
 
 workflows:
   deploy:
@@ -8,7 +9,6 @@ workflows:
       - docker/publish:
           image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
           tag: 'latest'
-      - run:
-         command: heroku container:login 
-      - run:
-         command: heroku container:release
+  heroku_deploy:
+    jobs:
+      - push-docker-image:

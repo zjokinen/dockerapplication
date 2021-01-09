@@ -15,7 +15,7 @@ jobs:
       - heroku/install
       - setup_remote_docker
       - heroku/push-docker-image:
-         process-type: web
+         process-types: web
          recursive: true
       - heroku/release-docker-image:
          process-types: web

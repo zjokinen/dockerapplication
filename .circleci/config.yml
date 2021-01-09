@@ -11,11 +11,21 @@ jobs:
       - docker/push:
           image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME 
           tag: 'latest'
+  deploy:
+    executor: heroku/default
+    steps:
+      - push-docker-image
+      - release-docker-image
 orbs:
   docker: circleci/docker@1.5.0
+  heroku: circleci/heroku@1.2.4
+
 version: 2.1
 workflows:
   commit:
     jobs:
       - build-and-push
+      - deploy:
+         requires:
+           - build-and-push
 

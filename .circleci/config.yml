@@ -15,4 +15,9 @@ workflows:
           image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
           update-description: true
           tag: 'latest'
-      - login:
+
+
+workflows:
+  heroku_deploy:
+    jobs:
+      - heroku/push-docker-image:

@@ -1,13 +1,11 @@
 version: 2.1
 orbs:
   docker: circleci/docker@1.5.0
-  heroku: circleci/heroku@0.0.10
 workflows:
   deploy:
     jobs:
       - docker/publish:
           image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
           tag: 'latest'
-          name: Deploy Master to Heroku
           command: |
             git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master

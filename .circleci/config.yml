@@ -28,6 +28,7 @@ orbs:
 
 version: 2.1
 workflows:
+  run-jobs:
     jobs:
       - build-and-push
       - deploy

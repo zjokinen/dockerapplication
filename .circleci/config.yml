@@ -11,4 +11,4 @@ workflows:
       - run:
          command: heroku container:login 
       - run:
-         command: heroku container: release
+         command: heroku container:release

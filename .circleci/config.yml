@@ -6,31 +6,12 @@ jobs:
   build-and-test:
     executor: docker/default
     steps:
-      - checkout
-      - node/install-packages
-      - run: 
-          name: Running npm test
-          command: |
-            npm run test
-      - run:
-          name: Codecov coverage
-          command: |
-            npm run coverage
-      - setup_remote_docker:
-          version: 18.06.0-ce
-      - run:
-          name: Build Docker image
-          command: |
-            docker build -t heroku-dockerize:circleci .
-            docker images
+      - docker/publish:
+          image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME 
+          tag: 'latest'
   deploy:
     executor: heroku/default
     steps:
-      - checkout
-      - run:
-          name: Storing previous commit
-          command: |
-            git rev-parse HEAD > ./commit.txt
       - heroku/install
       - setup_remote_docker:
           version: 18.06.0-ce

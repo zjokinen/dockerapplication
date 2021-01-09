@@ -6,4 +6,4 @@ workflows:
     jobs:
       - docker/publish:
           image: zjokinen/circletest
-          tag: 'latest
+          tag: 'latest'

@@ -1,23 +1,9 @@
 orbs:
-  docker: circleci/docker@1.5.0
-  heroku: circleci/heroku@1.2.4
-
+  heroku: circleci/heroku@x.y
 version: 2.1
-
-jobs:
-  login:
-    command: heroku container:login
-
-workflows:
-  build-docker-image-only:
-    jobs:
-      - docker/publish:
-          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
-          update-description: true
-          tag: 'latest'
-
-
 workflows:
   heroku_deploy:
     jobs:
-      - heroku/push-docker-image:
+      - heroku/deploy-via-git:
+          post-steps:
+          pre-steps:

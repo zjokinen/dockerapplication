@@ -14,8 +14,12 @@ jobs:
   deploy:
     executor: heroku/default
     steps:
-      - push-docker-image
-      - release-docker-image
+      - push-docker-image:
+        -app-name: $HEROKU_APP_NAME
+        -process-types: web
+      - release-docker-image:
+        -app-name: $HEROKU_APP_NAME
+        -process-types: web
 orbs:
   docker: circleci/docker@1.5.0
   heroku: circleci/heroku@1.2.4
@@ -24,5 +28,4 @@ version: 2.1
 workflows:
     jobs:
       - build-and-push
-      - deploy
 

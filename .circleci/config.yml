@@ -5,4 +5,5 @@ workflows:
   heroku_deploy:
     jobs:
       - heroku/release-docker-image:
-        -tag: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
+          app-name: $HEROKU_APP_NAME
+          process-types: web

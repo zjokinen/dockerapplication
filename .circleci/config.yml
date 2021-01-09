@@ -1,35 +1,24 @@
-version: 2.1
-orbs:
-  docker: circleci/docker@1.5.0
-  heroku: circleci/heroku@1.2.4
-
 jobs:
-  build-and-test:
-    executor: docker/default
+  build-and-push:
+    executor: docker/docker
     steps:
-      - build:
-          image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME 
+      - setup_remote_docker
+      - checkout
+      - docker/check
+      - docker/build:
+          image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
           tag: 'latest'
-  deploy:
-    executor: heroku/default
-    steps:
-      - heroku/install
-      - setup_remote_docker:
-          version: 18.06.0-ce
+      - docker/push:
+          digest-path: /tmp/digest.txt
+          image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME 
       - run:
-          name: Pushing to heroku registry
           command: |
-            heroku container:login
-            heroku container:push web -a $HEROKU_APP_NAME
-            heroku container:release web -a $HEROKU_APP_NAME
+            echo "Digest is: $(</tmp/digest.txt)"
+orbs:
+  docker: circleci/docker@x.y.z
+version: 2.1
 workflows:
-  build-test-deploy:
+  commit:
     jobs:
-      - build-and-test:
-      - deploy:
-          requires:
-            - build-and-test
-          filters:
-            branches:
-              only:
-                - master
+      - build-and-push
+

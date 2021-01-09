@@ -10,5 +10,5 @@ workflows:
           image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
           update-description: true
           tag: 'latest'
-      - heroku/push-docker-omage:
+      - heroku/push-docker-image:
           app-name: $HEROKU_APP_NAME

@@ -1,5 +1,6 @@
 orbs:
   heroku: circleci/heroku@1.2.4
+  docker: circleci/docker@1.0.0
 version: 2.1
 workflows:
   heroku_deploy:

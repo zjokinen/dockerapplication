@@ -16,8 +16,8 @@ jobs:
       - heroku/install
       - checkout
       - setup_remote_docker
-      - heroku/push-docker-container
-      - heroku/release-docker-container
+      - heroku/push-docker-image
+      - heroku/release-docker-image
 
 orbs:
   docker: circleci/docker@1.5.0

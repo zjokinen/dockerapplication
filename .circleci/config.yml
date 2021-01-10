@@ -16,6 +16,8 @@ jobs:
       - heroku/install
       - checkout
       - setup_remote_docker
+      - docker/build:
+          image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
       - heroku/push-docker-image
       - heroku/release-docker-image
 
